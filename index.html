@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>knowaboutme</title>
+<meta name="description" content="knowaboutme: the personal website of Ambuj Singh, a B.Tech Data Science student at PSIT and former NDA aspirant. Journey, hobbies, style, favourite players and playlist, told through a solar system.">
+<meta property="og:title" content="knowaboutme">
+<meta property="og:description" content="A personal website built like a solar system. Eight planets, eight pages.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#04050d">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%AA%90%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#04050d; --deep:#0d1030; --panel:rgba(14,17,48,.62); --line:rgba(176,190,255,.2);
+  --moon:#ece8da; --muted:#a9adcb; --solar:#f4a259; --ion:#8fb8ff;
+  --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --sans:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--void);color:var(--moon);font:400 1.02rem/1.7 var(--sans);overflow-x:hidden;min-height:100vh}
+body::before{content:"";position:fixed;inset:0;z-index:-2;background:
+  radial-gradient(ellipse 60% 50% at 80% 8%,rgba(88,64,190,.30),transparent 70%),
+  radial-gradient(ellipse 50% 45% at 8% 88%,rgba(30,90,170,.24),transparent 70%),
+  radial-gradient(ellipse 40% 30% at 50% 50%,rgba(140,50,120,.10),transparent 70%),var(--void)}
+#sky{position:fixed;inset:0;width:100%;height:100%;z-index:-1}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--ion);outline-offset:3px;border-radius:4px}
+main{outline:none;max-width:1120px;margin:0 auto;padding:0 clamp(1rem,4vw,2rem)}
+h1,h2,h3{font-family:var(--serif);font-weight:600;margin:0;line-height:1.05}
+h2{font-size:clamp(1.7rem,3.4vw,2.3rem);margin-bottom:.8rem}
+h3{font-size:1.35rem;line-height:1.2}
+p{margin:0 0 1rem;max-width:62ch}
+.muted{color:var(--muted)}
+
+/* ---------- planets ---------- */
+.pl{position:relative;display:inline-block;flex:none;width:calc(var(--s,20px) * var(--k,1));aspect-ratio:1;border-radius:50%;
+  box-shadow:0 0 calc(var(--s,20px) * var(--k,1) * .3) rgba(143,184,255,.14)}
+.pl::after{content:"";position:absolute;inset:0;border-radius:50%;z-index:1;pointer-events:none;
+  background:radial-gradient(circle at 30% 26%,rgba(255,255,255,.28),transparent 34%,rgba(0,0,10,.62) 100%)}
+.p-mercury{background:radial-gradient(circle at 60% 60%,#8d867a 0 8%,transparent 9%),radial-gradient(circle at 32% 30%,#d9d3c7,#8d867a 55%,#4a453e)}
+.p-venus{background:radial-gradient(circle at 32% 30%,#fbe7b5,#d29e56 55%,#7a4f22)}
+.p-earth{background:
+  radial-gradient(ellipse 28% 20% at 60% 38%,#58a862 0 62%,transparent 64%),
+  radial-gradient(ellipse 20% 14% at 34% 66%,#58a862 0 62%,transparent 64%),
+  radial-gradient(ellipse 14% 10% at 72% 70%,#f2f5f7 0 60%,transparent 64%),
+  radial-gradient(circle at 35% 30%,#6fb6ff,#1b5cb3 55%,#082452)}
+.p-mars{background:radial-gradient(circle at 32% 30%,#f0a37c,#c2552c 55%,#5c200d)}
+.p-jupiter{background:linear-gradient(180deg,#d9b98f 0 12%,#b98a5e 12% 22%,#ead2ac 22% 34%,#a56b45 34% 44%,#e8c9a0 44% 58%,#b5794f 58% 68%,#dcbb90 68% 82%,#9a6440 82%)}
+.p-saturn{background:linear-gradient(180deg,#e9d5a3 0 18%,#cdb27a 18% 34%,#efdcae 34% 55%,#c4a56d 55% 74%,#e6cf9b 74%)}
+.p-saturn::before{content:"";position:absolute;left:-58%;top:24%;width:216%;height:52%;border-radius:50%;z-index:2;pointer-events:none;rotate:-16deg;
+  border:calc(var(--s,20px) * var(--k,1) * .075) solid rgba(226,204,150,.7);
+  box-shadow:0 0 0 calc(var(--s,20px) * var(--k,1) * .035) rgba(226,204,150,.22)}
+.p-uranus{background:radial-gradient(circle at 32% 30%,#d3f6f7,#6fc0c9 55%,#2a6a78)}
+.p-neptune{background:radial-gradient(circle at 32% 30%,#93a9ff,#3c55d4 55%,#131f6b)}
+.moonorbit,.satorbit{position:absolute;left:-60%;top:-60%;width:220%;aspect-ratio:1;border-radius:50%;
+  border:1px dashed rgba(176,190,255,.28);animation:spin 16s linear infinite;pointer-events:none}
+.moon{position:absolute;top:0;left:50%;translate:-50% -50%;width:12%;aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#fbf8ec,#c9c4b3 60%,#8b8778);box-shadow:0 0 10px rgba(236,232,218,.4)}
+.sat{position:absolute;top:0;left:50%;translate:-50% -50%;width:14px;height:8px;background:#d8dbe8;border-radius:1px}
+.sat::before,.sat::after{content:"";position:absolute;top:1px;width:9px;height:6px;background:#4a6fd6;border-radius:1px}
+.sat::before{left:-11px}.sat::after{right:-11px}
+.sun{position:absolute;left:50%;top:50%;width:13%;aspect-ratio:1;translate:-50% -50%;border-radius:50%;
+  background:radial-gradient(circle at 40% 38%,#fff6d6,#ffd07a 35%,#f4a259 65%,#d9642a);
+  box-shadow:0 0 40px 12px rgba(244,162,89,.5),0 0 120px 40px rgba(244,162,89,.2);animation:pulse 6s ease-in-out infinite}
+.sunmini{display:inline-block;width:18px;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 40% 38%,#fff6d6,#f4a259 60%,#d9642a);box-shadow:0 0 10px rgba(244,162,89,.6)}
+@keyframes spin{to{rotate:360deg}}
+@keyframes pulse{50%{box-shadow:0 0 52px 16px rgba(244,162,89,.6),0 0 140px 50px rgba(244,162,89,.24)}}
+
+/* ---------- top bar ---------- */
+.top{position:sticky;top:0;z-index:20;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.4rem 1rem;
+  padding:.7rem clamp(1rem,4vw,2rem);background:rgba(4,5,13,.66);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;font:italic 600 1.35rem/1 var(--serif)}
+.dots{display:flex;gap:.7rem;align-items:center}
+.dot{display:block;border-radius:50%;padding:0;line-height:0;transition:transform .2s}
+.dot:hover{transform:scale(1.35)}
+.dot[aria-current]{outline:1.5px solid var(--moon);outline-offset:4px}
+.li{font-size:.9rem;font-weight:700;text-decoration:none;border:1px solid var(--line);padding:.35rem .9rem;border-radius:999px;transition:border-color .2s,color .2s}
+.li:hover{border-color:var(--solar);color:var(--solar)}
+@media(max-width:720px){.dots{order:3;width:100%;justify-content:center;gap:1rem}}
+
+/* ---------- home ---------- */
+.home{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);gap:clamp(1.5rem,4vw,4rem);align-items:center;min-height:calc(100vh - 70px);padding-block:2.5rem}
+.home h1{font:italic 500 clamp(3.2rem,9vw,7rem)/.92 var(--serif);letter-spacing:-.02em;margin-bottom:1.2rem}
+.home .lede{font-size:1.2rem;color:var(--moon)}
+.actions{display:flex;flex-wrap:wrap;gap:.8rem;margin:1.4rem 0 2rem}
+.btn{display:inline-flex;align-items:center;gap:.5rem;font:700 .95rem/1 var(--sans);text-decoration:none;padding:.85rem 1.4rem;border-radius:999px;background:var(--solar);color:#1a1023;border:1px solid var(--solar);transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(244,162,89,.3)}
+.btn.ghost{background:transparent;color:var(--moon);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--ion);box-shadow:none}
+.jump{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.3rem 1.2rem;list-style:none;margin:0;padding:0}
+.jump a{display:flex;align-items:center;gap:.7rem;text-decoration:none;padding:.4rem 0;border-bottom:1px solid transparent}
+.jump a:hover b{color:var(--solar)}
+.jump b{font-weight:500;display:block;line-height:1.25;transition:color .2s}
+.jump small{color:var(--muted);font-size:.78rem;display:block;line-height:1.2}
+@media(max-width:860px){.home{grid-template-columns:1fr;min-height:0}}
+@media(max-width:420px){.jump{grid-template-columns:1fr}}
+
+.orrery{--k:1;position:relative;width:min(100%,640px);aspect-ratio:1;margin-inline:auto}
+.orbit{position:absolute;left:50%;top:50%;width:var(--d);aspect-ratio:1;translate:-50% -50%;border:1px solid var(--line);border-radius:50%;
+  animation:spin var(--t) linear infinite;animation-delay:calc(var(--t) * var(--p) * -1)}
+.pwrap{position:absolute;left:50%;top:0;translate:-50% -50%;display:block;
+  animation:spin var(--t) linear infinite reverse;animation-delay:calc(var(--t) * var(--p) * -1)}
+.pwrap a{display:block;position:relative;border-radius:50%;line-height:0}
+.plabel{position:absolute;top:100%;left:50%;translate:-50% 6px;font:500 .72rem/1 var(--sans);white-space:nowrap;color:var(--moon);text-shadow:0 1px 6px #000;opacity:.85;transition:color .2s,opacity .2s}
+.pwrap a:hover .plabel,.pwrap a:focus-visible .plabel{color:var(--solar);opacity:1}
+.pwrap a:hover .pl{filter:brightness(1.2)}
+.belt{position:absolute;left:50%;top:50%;width:63%;aspect-ratio:1;translate:-50% -50%;border-radius:50%;border:5px dotted rgba(210,200,180,.2);animation:spin 200s linear infinite}
+.orrery:hover *,.orrery:focus-within *{animation-play-state:paused}
+@media(max-width:600px){.orrery{--k:.72}.plabel{display:none}.pwrap a:hover .plabel,.pwrap a:focus-visible .plabel{display:block}}
+
+/* ---------- inner pages ---------- */
+.hero{position:relative;min-height:clamp(230px,36vh,340px);display:flex;align-items:center;padding-block:2.5rem 1rem}
+.hero-text{position:relative;z-index:1;max-width:min(58ch,100%)}
+.hero h1{font:italic 500 clamp(2.7rem,7vw,5rem)/.98 var(--serif);letter-spacing:-.015em;margin-bottom:.9rem}
+.lede{font-size:1.15rem;color:var(--muted);margin:0}
+.bigplanet{--k:1;position:absolute;right:3%;top:50%;translate:0 -50%;width:var(--s)}
+@media(max-width:760px){.bigplanet{--k:.58;right:-12px;opacity:.55;top:38%}}
+.sec{margin-top:clamp(2.2rem,5vw,3.6rem)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:1.2rem}
+.panel{position:relative;padding:1.5rem 1.6rem;border:1px solid var(--line);border-radius:2px;background:var(--panel);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.panel::before,.panel::after{content:"";position:absolute;width:12px;height:12px;border:1px solid var(--solar);pointer-events:none}
+.panel::before{left:-1px;top:-1px;border-right:0;border-bottom:0}
+.panel::after{right:-1px;bottom:-1px;border-left:0;border-top:0}
+.panel p:last-child{margin-bottom:0}
+.facts{display:grid;grid-template-columns:auto 1fr;gap:.55rem 1.4rem;margin:0}
+.facts dt{color:var(--muted)}.facts dd{margin:0}
+
+.tl{list-style:none;margin:0;padding:0 0 0 .3rem;counter-reset:n;border-left:1px solid var(--line);margin-left:.5rem}
+.tl li{position:relative;padding:0 0 1.8rem 1.9rem}
+.tl li:last-child{padding-bottom:0}
+.tl li::before{content:"";position:absolute;left:-6px;top:.45rem;width:11px;height:11px;border-radius:50%;background:var(--solar);box-shadow:0 0 12px var(--solar)}
+.tl.num li{counter-increment:n}
+.tl.num li::before{content:counter(n);left:-15px;top:.1rem;width:29px;height:29px;display:grid;place-items:center;font:700 .82rem/1 var(--sans);color:#1a1023}
+.tl .meta{color:var(--ion);font-size:.85rem;margin:.1rem 0 .4rem}
+.tl p{margin:0}
+
+.bar{height:6px;background:rgba(176,190,255,.15);border-radius:99px;overflow:hidden;margin-top:.9rem}
+.bar span{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--ion),var(--solar))}
+.mission h3{margin-bottom:.3rem}
+.mission .pct{color:var(--muted);font-size:.85rem;margin-top:.4rem}
+
+.cloud{display:flex;flex-wrap:wrap;gap:.7rem .9rem;align-items:baseline}
+.chip{font:italic 600 calc(1rem + var(--w) * .28rem)/1.1 var(--serif);padding:.35rem 1rem;border:1px solid var(--line);border-radius:999px;background:var(--panel)}
+.chip:nth-child(3n){border-color:rgba(244,162,89,.5)}
+.day{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));border:1px solid var(--line);background:var(--panel)}
+.day>div{padding:1.2rem 1.3rem;border-left:1px solid var(--line)}
+.day>div:first-child{border-left:0}
+.day h3{display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem}
+.sd{width:14px;aspect-ratio:1;border-radius:50%}
+.list{margin:0;padding-left:1.1rem}.list li{margin:.3rem 0}
+
+.swatches{display:flex;flex-wrap:wrap;gap:1.4rem}
+.sw{text-align:center;font-size:.85rem;color:var(--muted)}
+.sw .pl{--s:76px;display:block;margin:0 auto .5rem}
+.sw b{display:block;color:var(--moon);font-weight:500}
+
+.filters{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.2rem}
+.fbtn{font:500 .88rem/1 var(--sans);color:var(--moon);background:transparent;border:1px solid var(--line);padding:.55rem 1rem;border-radius:999px;cursor:pointer;transition:border-color .2s,background .2s}
+.fbtn:hover{border-color:var(--ion)}
+.fbtn[aria-pressed="true"]{background:var(--moon);color:#10122a;border-color:var(--moon)}
+.certs{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
+.cert{display:flex;gap:1rem;align-items:flex-start;padding:1.1rem 1.2rem;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.seal{flex:none;width:44px;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#ffe2b0,var(--solar) 60%,#b5622a)}
+.seal i{width:20px;aspect-ratio:1;background:#1a1023;clip-path:polygon(50% 0,60% 40%,100% 50%,60% 60%,50% 100%,40% 60%,0 50%,40% 40%)}
+.cert h3{font-size:1.2rem;margin-bottom:.25rem}
+.cert small{color:var(--muted);display:block;line-height:1.4}
+.cert .tag{color:var(--ion);margin-top:.35rem}
+
+.const{position:relative;height:clamp(330px,52vw,470px);border:1px solid var(--line);background:linear-gradient(180deg,rgba(14,17,48,.4),rgba(14,17,48,.7))}
+.const svg{position:absolute;inset:0;width:100%;height:100%}
+.const line{stroke:rgba(143,184,255,.45);stroke-width:1;stroke-dasharray:3 4;vector-effect:non-scaling-stroke}
+.cstar{position:absolute;translate:-50% -50%;display:flex;flex-direction:column;align-items:center;gap:.5rem;background:none;border:0;color:var(--moon);cursor:pointer;font:500 .88rem/1.2 var(--sans);padding:.4rem;text-align:center;max-width:100px}
+.cstar i{width:26px;aspect-ratio:1;background:var(--ion);clip-path:polygon(50% 0,60% 40%,100% 50%,60% 60%,50% 100%,40% 60%,0 50%,40% 40%);transition:transform .25s,background .25s;filter:drop-shadow(0 0 6px var(--ion))}
+.cstar:hover i{transform:scale(1.3)}
+.cstar[aria-pressed="true"] i{background:var(--solar);transform:scale(1.7);filter:drop-shadow(0 0 10px var(--solar))}
+.cstar[aria-pressed="true"]{color:var(--solar)}
+.take{color:var(--solar);margin-top:.4rem}
+.detail h2{margin-bottom:.2rem}.detail .meta{color:var(--ion);margin-bottom:.8rem}
+
+.tracks{list-style:none;margin:0;padding:0;counter-reset:t}
+.trk{display:flex;align-items:center;gap:1rem;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);color:var(--moon);font:inherit;padding:.85rem .3rem;cursor:pointer;counter-increment:t}
+.trk::before{content:counter(t);width:1.6rem;color:var(--muted);font-size:.85rem;text-align:right}
+.trk:hover{background:rgba(143,184,255,.06)}
+.trk b{display:block;font-weight:500;line-height:1.3}
+.trk small{color:var(--muted);display:block}
+.trk .mood{margin-left:auto;font-size:.8rem;color:var(--ion);border:1px solid var(--line);border-radius:999px;padding:.2rem .7rem;white-space:nowrap}
+.trk[aria-pressed="true"]{background:rgba(244,162,89,.09)}
+.trk[aria-pressed="true"] b{color:var(--solar)}
+.trk[aria-pressed="true"]::before{content:"\2726";color:var(--solar)}
+.tune{display:flex;gap:1.6rem;align-items:center;flex-wrap:wrap}
+.tune .pl{--s:70px}
+
+.stops{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:clamp(3rem,7vw,5rem);padding-top:1.5rem;border-top:1px solid var(--line)}
+.stops a{display:flex;align-items:center;gap:.9rem;text-decoration:none}
+.stops a.next{margin-left:auto;text-align:right;flex-direction:row-reverse}
+.stops small{display:block;color:var(--muted);font-size:.8rem;line-height:1.2}
+.stops b{font:600 1.5rem/1.1 var(--serif);transition:color .2s}
+.stops a:hover b{color:var(--solar)}
+
+footer{max-width:1120px;margin:0 auto;padding:2.5rem clamp(1rem,4vw,2rem) 3rem;display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:center;justify-content:space-between;color:var(--muted);font-size:.9rem}
+footer .mn{display:flex;align-items:center;gap:.8rem}
+footer a{color:var(--moon)}
+.moonpanel{display:flex;align-items:center;gap:1.4rem}
+
+.btn.big{font-size:1.05rem;padding:1.05rem 1.8rem;margin-top:.4rem}
+.st{display:inline-block;margin-top:.8rem;font-size:.8rem;color:var(--ion);border:1px solid var(--line);border-radius:999px;padding:.15rem .75rem}
+.hgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:1rem}
+.hcard{position:relative;overflow:hidden;min-height:270px;display:flex;align-items:flex-end;border:1px solid var(--line);border-radius:2px;background:var(--deep)}
+.hcard svg{position:absolute;inset:0;width:100%;height:100%;transition:transform .6s ease}
+.hcard:hover svg{transform:scale(1.06)}
+.hcard::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 42%,rgba(4,5,13,.9));pointer-events:none}
+.hcard>div{position:relative;z-index:1;padding:1.2rem 1.4rem}
+.hcard h3{font-size:1.8rem}
+.hcard p{margin:.2rem 0 0;font-size:.95rem}
+.creed{list-style:none;margin:0;padding:0}
+.creed li{font:italic 500 clamp(1.5rem,3.2vw,2.2rem)/1.2 var(--serif);padding:1.1rem 0;border-top:1px solid var(--line);max-width:34ch}
+.creed li:first-child{border-top:0;padding-top:0;color:var(--solar);font-size:clamp(1.9rem,4.4vw,3.1rem);line-height:1.1}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .orbit{rotate:calc(360deg * var(--p))}
+  .pwrap{rotate:calc(-360deg * var(--p))}
+}
+</style>
+</head>
+<body>
+<canvas id="sky" aria-hidden="true"></canvas>
+
+<header class="top">
+  <a class="brand" href="#/" id="brand"></a>
+  <nav class="dots" id="dots" aria-label="Planets"></nav>
+  <a class="li" id="liTop" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+</header>
+
+<main id="view" tabindex="-1"><noscript>This site needs JavaScript to draw its universe.</noscript></main>
+
+<footer>
+  <div class="mn" id="footMoon"></div>
+  <div id="footRight"></div>
+</footer>
+
+<script>
+/* =====================================================================
+   EDIT YOUR DETAILS HERE. Everything on the site is drawn from this
+   object. Text in [square brackets] is a placeholder to replace.
+   ===================================================================== */
+const SITE = {
+  siteName: "knowaboutme",
+  name: "Ambuj Singh",
+  tagline: "B.Tech (Data Science) student at PSIT. Former NDA aspirant. Always looking up.",
+  linkedin: "https://www.linkedin.com/in/ambuj-singh-83a979332",
+  spotify: "https://open.spotify.com/",
+  college: {name:"Pranveer Singh Institute of Technology (PSIT)", url:"https://www.psit.ac.in/", branch:"Data Science", year:"2029"},
+  school: {name:"New Standard Public School (NSPS)", place:"Tripula, Raebareli", url:"https://nspstripulaindia.org/"},
+  coaching: {name:"Major Kalshi Classes", url:"https://www.majorkalshiclasses.com/",
+    note:"A defence academy that prepares students for the NDA, CDS, AFCAT and other forces exams, covering both the written exam and the SSB interview. Its main branch is in Prayagraj."},
+  ssb: {name:"AMAS Training", full:"Academy of Military Aptitude and Skills", url:"https://amastraining.com/about",
+    note:"An SSB training academy that focuses on building leadership traits and personality rather than teaching tricks for the interview."},
+
+  about: [
+    "I'm Ambuj Singh, a B.Tech student in Data Science at Pranveer Singh Institute of Technology (PSIT), graduating in 2029. I like a balanced life: studies on one side, and singing, volleyball and long runs on the other.",
+    "I prepared for the National Defence Academy (NDA), with coaching at Major Kalshi Classes and SSB preparation at AMAS Training. That journey gave me discipline, and I carry it into everything I do.",
+    "I love to travel, and I'm at my best when I get some time alone to think. [Add anything else you'd like people to know.]"
+  ],
+  creed: [
+    "I love to be the best and to achieve impossible things in my life.",
+    "I don't wait for the right moment. I train until the moment is mine.",
+    "Impossible is just a starting line I haven't crossed yet.",
+    "Discipline is my superpower. The NDA journey built it, and it doesn't switch off.",
+    "I sing when I'm happy, run when I'm stuck, and travel when I need new ideas.",
+    "With Data Science as my launchpad, I want to turn numbers into decisions that matter."
+  ],
+  path: [
+    {stage:"School", place:"New Standard Public School (NSPS), Tripula, Raebareli", years:"[years]", note:"Where my foundation was built. [Add a favourite memory or achievement from school.]", link:{url:"https://nspstripulaindia.org/", label:"Visit the NSPS website"}},
+    {stage:"NDA preparation", place:"Major Kalshi Classes and AMAS Training", years:"", note:"Coaching for the written exam, then preparation for the SSB."},
+    {stage:"B.Tech in Data Science", place:"PSIT", years:"Batch of 2029", note:"Currently pursuing my degree and building toward 2029.", link:{url:"https://www.psit.ac.in/", label:"Visit the PSIT website"}}
+  ],
+  facts: [
+    ["Studying","B.Tech in Data Science at PSIT"],
+    ["Graduating","Class of 2029"],
+    ["Once aiming for","The National Defence Academy"],
+    ["Sports","Volleyball and running"],
+    ["Off the clock","Singing, travelling, time alone"]
+  ],
+
+  missions: [
+    {t:"B.Tech in Data Science", d:"Pursuing my degree at PSIT, graduating in 2029.", s:"In progress", link:true},
+    {t:"Staying active", d:"Running and volleyball keep me fit and clear-headed.", s:"Ongoing"},
+    {t:"Carrying the NDA mindset", d:"Discipline, fitness and leadership from my NDA and SSB preparation. [Add your current plan.]", s:"Ongoing"},
+    {t:"Building this website", d:"A home for everything about me, from studies to songs.", s:"Live"}
+  ],
+  next: ["[A goal for this semester]","[A trip to plan]","[A skill or certificate to finish]"],
+
+  hobbies: [
+    {id:"sing", t:"Singing", d:"Songs are how I reset, celebrate and think."},
+    {id:"volley", t:"Volleyball", d:"Fast, loud and better with a team."},
+    {id:"run", t:"Running", d:"Early miles, clear head, no phone."},
+    {id:"alone", t:"Time alone", d:"Quiet hours under an open sky to recharge."},
+    {id:"travel", t:"Travelling", d:"New roads, new mountains, new stories."}
+  ],
+
+  palette: [["Olive","#5b6236"],["Rust","#a5522d"],["Beige","#d8c7a3"],["Muted green","#6f8467"],["Charcoal","#2b2d36"]],
+  styleIntro: "I follow what's trending in India right now: relaxed silhouettes, earthy colours and comfort that still looks sharp. Clothes should feel easy in the heat and look intentional when I walk in.",
+  trends: [
+    {t:"Oversized and boxy tees", d:"Drop-shoulder, roomier cuts have become an everyday default across India, not just a streetwear thing."},
+    {t:"Baggy and relaxed denim", d:"Wide-leg jeans that sit over sneakers have replaced the slim-fit era."},
+    {t:"Utility cargos", d:"Multi-pocket cargos in neutral colours, balanced with a bigger top."},
+    {t:"Earthy colours", d:"Olive, rust, beige and muted greens are winning over plain black, white and navy."},
+    {t:"Cuban collar shirts", d:"Open, tie-free collars have moved from resort wear into daily wear. Linen ones suit Indian summers."},
+    {t:"Co-ords and elevated basics", d:"Matching sets, structured polos and clean overshirts look put together with little effort."}
+  ],
+  styleLists: [
+    ["Everyday", ["Oversized tee with baggy jeans and clean sneakers","Boxy shirt with straight-fit pants","Cargos with a plain tee in olive or beige"]],
+    ["Dressed up", ["Cuban collar or linen shirt with relaxed trousers","Clean overshirt over a plain tee","Structured polo with chinos"]],
+    ["Travel and training", ["Lightweight hoodie with joggers","Co-ord set for airports and long rides","Chunky sneakers with breathable socks"]],
+    ["Rules I follow", ["Fit before logos","Earthy colours with one bold piece","Comfort that survives the Indian heat"]]
+  ],
+
+  nda: {
+    intro: "I prepared for the National Defence Academy exam. This page is the honest version of that journey. [Add two lines on why you chose it.]",
+    stats: [["Written exam coaching","Major Kalshi Classes"],["SSB preparation","AMAS Training"],["Attempts","1"],["Furthest stage","[Written / SSB / Medical]"]],
+    steps: [
+      {t:"The decision", d:"I decided I wanted a life in uniform. [Write the moment it clicked.]"},
+      {t:"Building the base", d:"Coaching at Major Kalshi Classes for the written exam: Mathematics and the General Ability Test, with practice papers and current affairs. [Add your daily routine.]"},
+      {t:"Written exam", d:"Two papers, Mathematics and the General Ability Test, on one exam day. [Your attempt, how it felt, how you scored.]"},
+      {t:"SSB preparation", d:"Preparing with AMAS Training for five days of screening, psychology tests, group tasks and interviews. [Your centre and experience.]"},
+      {t:"After the result", d:"[What happened next and what you are doing now. Every outcome is part of the journey.]"}
+    ],
+    lessons: ["Fitness is a habit, not a phase.","Consistency beats intensity.","Rejection teaches faster than results do.","Officer-like qualities are built in ordinary days."],
+    tips: ["Start running and bodyweight training early, and log it.","Read one newspaper editorial daily for English and current affairs.","Practise maths in timed sets, not long lazy sessions.","Speak to serving officers or seniors who cleared the SSB."]
+  },
+
+  players: [
+    {n:"Sergio Ramos", s:"Football, defender", x:14, y:64, k:"Leadership and never giving up",
+     w:"Sergio Ramos is the captain I would follow anywhere. He led Real Madrid and Spain with a fighting spirit that never dropped, and he showed up biggest in the biggest moments. His stoppage-time header in the 2014 Champions League final, when Real Madrid were losing, is proof that it isn't over until it's over. He won four Champions League titles with Real Madrid, plus the World Cup and two European Championships with Spain, and he scored goals like a striker while defending. That's the mindset I want: lead from the front and treat pressure as fuel."},
+    {n:"Virat Kohli", s:"Cricket, batter", x:29, y:26, k:"Fitness and a chaser's mindset",
+     w:"Virat Kohli turned fitness into a competitive edge and pushed the whole team to raise its standards. I admire how he thrives when the target looks huge, and how he keeps improving through discipline rather than talent alone. His approach to training and diet is exactly the habit I try to build with my running."},
+    {n:"MS Dhoni", s:"Cricket, wicketkeeper and captain", x:44, y:72, k:"Calm under pressure",
+     w:"MS Dhoni proved that staying calm wins matches. As captain he led India to the 2007 T20 World Cup, the 2011 World Cup and the 2013 Champions Trophy, and he backed his players when it mattered. I try to copy his composure and his humility, especially when exams or interviews get tense, because that is the kind of calm the SSB looks for."},
+    {n:"Neeraj Chopra", s:"Javelin", x:58, y:30, k:"Discipline and pride in the uniform",
+     w:"Neeraj Chopra won Olympic gold at Tokyo 2020 and silver at Paris 2024, and he is also part of the Indian Army. He shows that hard work, discipline and pride in the uniform can sit together, which speaks straight to my own NDA journey. He stays humble and consistent even at the very top."},
+    {n:"Lionel Messi", s:"Football, forward", x:73, y:68, k:"Vision and humility",
+     w:"Lionel Messi makes the hardest game look simple. I admire his vision, his balance and the way he sees a play before anyone else does. Lifting the World Cup in 2022 showed that patience and persistence pay off, and his quiet humility is the kind of confidence I like."},
+    {n:"Cristiano Ronaldo", s:"Football, forward", x:86, y:26, k:"Work ethic",
+     w:"Cristiano Ronaldo is the proof that hard work can beat natural talent. He is known for his training discipline and fitness and his refusal to be satisfied, and he has won five Ballon d'Or awards while scoring at the top for two decades. He inspires me to raise my own standards, day after day."}
+  ],
+
+  playlistName: "Orbit Radio",
+  playlistNote: "The songs that keep me running, studying and looking at the sky. [Swap in your favourites.]",
+  tracks: [
+    {t:"Teri Mitti", a:"B Praak", m:"Motivation"},
+    {t:"Ae Watan", a:"Arijit Singh", m:"Pride"},
+    {t:"Sandese Aate Hain", a:"Sonu Nigam", m:"Missing home"},
+    {t:"Space Oddity", a:"David Bowie", m:"Night sky"},
+    {t:"Starboy", a:"The Weeknd", m:"Night drive"},
+    {t:"Cosmic Love", a:"Florence + The Machine", m:"Stargazing"},
+    {t:"Kun Faya Kun", a:"A. R. Rahman", m:"Calm"},
+    {t:"Lose Yourself", a:"Eminem", m:"Workout"}
+  ]
+};
+
+/* ------------------------------ pages ------------------------------- */
+const ORDER = ["mercury","venus","earth","mars","jupiter","saturn","uranus","neptune"];
+const PAGES = {
+  mercury:{planet:"Mercury", title:"Work and certificates", lede:"My work and certificates live on my LinkedIn profile.", hs:170},
+  venus:{planet:"Venus", title:"Style", lede:"What's trending in India right now, and how I wear it.", hs:220},
+  earth:{planet:"Earth", title:"About me", lede:"Who I am, what I study, and the moon overhead tonight.", hs:250},
+  mars:{planet:"Mars", title:"What I'm doing now", lede:"The missions I'm running this season.", hs:200},
+  jupiter:{planet:"Jupiter", title:"Hobbies and spare time", lede:"Singing, volleyball, running, time alone and travel.", hs:320},
+  saturn:{planet:"Saturn", title:"My NDA journey", lede:"The decision, the coaching, the SSB, and what came after.", hs:190},
+  uranus:{planet:"Uranus", title:"Favourite players", lede:"Six players, six lessons, drawn as a constellation. Tap a star to see why.", hs:230},
+  neptune:{planet:"Neptune", title:"My playlist", lede:"The songs on repeat, broadcast by a satellite.", hs:230}
+};
+
+/* --------------------------- helpers -------------------------------- */
+const $ = (s,r=document)=>r.querySelector(s);
+const pl = (id,size,extra="")=>`<span class="pl p-${id}" style="--s:${size}" aria-hidden="true">${extra}</span>`;
+const MOON_ORBIT = `<span class="moonorbit"><span class="moon"></span></span>`;
+const SAT_ORBIT = `<span class="satorbit"><span class="sat"></span></span>`;
+
+function moonInfo(d=new Date()){
+  const jd = d.getTime()/86400000 + 2440587.5;
+  const p = (((jd - 2451550.1)/29.530588853) % 1 + 1) % 1;
+  const illum = Math.round((1-Math.cos(2*Math.PI*p))/2*100);
+  const name = p<.03||p>.97?"New moon":p<.22?"Waxing crescent":p<.28?"First quarter":p<.47?"Waxing gibbous":p<.53?"Full moon":p<.72?"Waning gibbous":p<.78?"Last quarter":"Waning crescent";
+  return {p,illum,name};
+}
+function moonSVG(size,p){
+  const r=20,c=22,t=Math.cos(2*Math.PI*p),rx=Math.abs(t)*r,waxing=p<.5;
+  const main=waxing?1:0, term=waxing?(t>0?0:1):(t>0?1:0);
+  const d=`M ${c} ${c-r} A ${r} ${r} 0 0 ${main} ${c} ${c+r} A ${rx.toFixed(2)} ${r} 0 0 ${term} ${c} ${c-r} Z`;
+  return `<svg width="${size}" height="${size}" viewBox="0 0 44 44" role="img" aria-label="Moon phase tonight"><circle cx="22" cy="22" r="20" fill="#1a1d3a" stroke="rgba(176,190,255,.3)"/><path d="${d}" fill="#ece8da"/></svg>`;
+}
+
+/* ---------------------------- home ---------------------------------- */
+const ORBITS = [
+  ["mercury",24,40,.10,12],["venus",34,62,.55,17],["earth",45,90,.30,19,MOON_ORBIT],["mars",56,125,.80,15],
+  ["jupiter",70,190,.15,34],["saturn",83,260,.62,26],["uranus",93,340,.90,21],["neptune",100,420,.40,21]
+];
+function homeHTML(){
+  const orbits = ORBITS.map(([id,d,t,p,s,extra])=>`
+    <div class="orbit" style="--d:${d}%;--t:${t}s;--p:${p}">
+      <div class="pwrap"><a href="#/${id}" aria-label="${PAGES[id].planet}: ${PAGES[id].title}">${pl(id,s+"px",extra||"")}<span class="plabel">${PAGES[id].title}</span></a></div>
+    </div>`).join("");
+  const jump = ORDER.map(id=>`<li><a href="#/${id}">${pl(id,"22px")}<span><b>${PAGES[id].title}</b><small>${PAGES[id].planet}</small></span></a></li>`).join("");
+  return `<section class="home">
+    <div>
+      <h1>${SITE.name}</h1>
+      <p class="lede">${SITE.tagline}</p>
+      <p class="muted">Eight planets, eight pages. Pick a planet in the solar system to visit it, or use the list below.</p>
+      <div class="actions">
+        <a class="btn" href="${SITE.linkedin}" target="_blank" rel="noopener noreferrer">See my work on LinkedIn</a>
+        <a class="btn ghost" href="#/earth">About me</a>
+      </div>
+      <ul class="jump">${jump}</ul>
+    </div>
+    <div class="orrery" aria-label="Interactive solar system menu">
+      <div class="belt"></div>${orbits}<div class="sun" aria-hidden="true"></div>
+    </div>
+  </section>`;
+}
+
+/* --------------------------- page bodies ---------------------------- */
+const ART = {
+  sing:`<svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3a1c71"/><stop offset=".55" stop-color="#b24592"/><stop offset="1" stop-color="#f15f79"/></linearGradient></defs>
+    <rect width="400" height="260" fill="url(#ga)"/>
+    <polygon points="110,0 160,0 240,260 50,260" fill="#fff" opacity=".07"/><polygon points="240,0 295,0 390,260 205,260" fill="#fff" opacity=".06"/>
+    <g fill="none" stroke="#fff" stroke-linecap="round" stroke-width="3" opacity=".55"><path d="M268 50q18 18 0 36"/><path d="M284 38q28 30 0 60"/><path d="M132 50q-18 18 0 36"/><path d="M116 38q-28 30 0 60"/></g>
+    <rect x="176" y="22" width="48" height="76" rx="24" fill="#ece8da"/>
+    <g stroke="#3a1c71" stroke-width="2" opacity=".4"><path d="M176 46h48M176 60h48M176 74h48M200 22v76"/></g>
+    <path d="M164 84q0 42 36 42t36-42" fill="none" stroke="#ece8da" stroke-width="5" stroke-linecap="round"/>
+    <path d="M200 126v30M172 158h56" stroke="#ece8da" stroke-width="5" stroke-linecap="round"/>
+    <g font-family="Georgia,serif" fill="#ffd9a8"><text x="300" y="40" font-size="34">&#9834;</text><text x="80" y="60" font-size="42">&#9835;</text><text x="318" y="120" font-size="26" opacity=".7">&#9834;</text></g></svg>`,
+  volley:`<svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="gb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b2a85"/><stop offset=".6" stop-color="#ff6a5c"/><stop offset="1" stop-color="#ffb26b"/></linearGradient>
+    <pattern id="mesh" width="12" height="12" patternUnits="userSpaceOnUse"><path d="M12 0H0V12" fill="none" stroke="#fff" stroke-opacity=".55"/></pattern></defs>
+    <rect width="400" height="260" fill="url(#gb)"/><circle cx="330" cy="120" r="34" fill="#ffe2b0" opacity=".85"/>
+    <rect y="176" width="400" height="84" fill="#e8c88e" opacity=".92"/>
+    <rect x="70" y="84" width="260" height="64" fill="url(#mesh)"/><path d="M70 84H330" stroke="#fff" stroke-width="4"/>
+    <path d="M70 84V180M330 84V180" stroke="#f3efe2" stroke-width="5" stroke-linecap="round"/>
+    <path d="M96 150Q150 -10 208 46" fill="none" stroke="#fff" stroke-width="2.5" stroke-dasharray="4 7" opacity=".8"/>
+    <circle cx="228" cy="52" r="26" fill="#fff8e1" stroke="#e0a13a" stroke-width="2"/>
+    <g fill="none" stroke="#e0a13a" stroke-width="2"><path d="M204 42Q228 56 252 42"/><path d="M204 64Q228 52 252 64"/><path d="M228 26Q242 52 228 78"/></g></svg>`,
+  run:`<svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="gc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#232a6b"/><stop offset=".65" stop-color="#e0765f"/><stop offset="1" stop-color="#f7b46b"/></linearGradient></defs>
+    <rect width="400" height="260" fill="url(#gc)"/><circle cx="90" cy="176" r="44" fill="#ffe2b0" opacity=".9"/>
+    <path d="M0 182Q90 150 170 178T400 168V260H0Z" fill="#241f5a"/>
+    <rect y="188" width="400" height="72" fill="#17193f"/>
+    <g stroke="#fff" stroke-opacity=".25" stroke-width="2"><path d="M0 206H400"/><path d="M0 226H400"/><path d="M0 246H400"/></g>
+    <g stroke="#fff" stroke-opacity=".5" stroke-width="3" stroke-linecap="round"><path d="M120 70h50"/><path d="M96 96h84"/><path d="M130 122h44"/></g>
+    <g fill="none" stroke="#f6f2e6" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M244 82L222 132"/><path d="M244 84L268 100L284 88"/><path d="M240 88L222 100L206 120"/>
+      <path d="M222 132L254 150L252 182"/><path d="M222 132L200 158L176 150"/></g>
+    <circle cx="252" cy="60" r="14" fill="#f6f2e6"/></svg>`,
+  alone:`<svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="gd" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#050818"/><stop offset="1" stop-color="#26307e"/></linearGradient>
+    <mask id="mm"><rect width="400" height="260" fill="#fff"/><circle cx="334" cy="42" r="20" fill="#000"/></mask></defs>
+    <rect width="400" height="260" fill="url(#gd)"/>
+    <g fill="#fff"><circle cx="40" cy="30" r="1.6"/><circle cx="90" cy="70" r="1.2"/><circle cx="140" cy="24" r="1.8"/><circle cx="210" cy="60" r="1.2"/><circle cx="260" cy="30" r="1.6"/><circle cx="60" cy="110" r="1.2"/><circle cx="300" cy="96" r="1.4"/><circle cx="370" cy="100" r="1.2"/><circle cx="180" cy="100" r="1"/><circle cx="20" cy="70" r="1"/></g>
+    <circle cx="320" cy="50" r="22" fill="#ece8da" mask="url(#mm)"/>
+    <path d="M0 176Q120 122 220 152T400 142V260H0Z" fill="#0b0f2e"/>
+    <path d="M138 146Q140 128 150 128Q161 128 163 146Z" fill="#05071a"/><circle cx="150" cy="117" r="9" fill="#05071a"/><path d="M160 146L176 146" stroke="#05071a" stroke-width="6" stroke-linecap="round"/></svg>`,
+  travel:`<svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="ge" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b2a6b"/><stop offset=".7" stop-color="#d9709a"/><stop offset="1" stop-color="#f4a259"/></linearGradient></defs>
+    <rect width="400" height="260" fill="url(#ge)"/><circle cx="92" cy="80" r="22" fill="#ffe2b0" opacity=".9"/>
+    <polygon points="0,170 60,100 110,150 170,84 240,160 300,110 400,170 400,260 0,260" fill="#3a3f8f"/>
+    <polygon points="0,206 80,146 150,196 230,136 320,196 400,156 400,260 0,260" fill="#171b4d"/>
+    <path d="M200 260Q140 226 206 206T196 176" fill="none" stroke="#f4a259" stroke-width="5" stroke-linecap="round" stroke-dasharray="10 8"/>
+    <path d="M250 50L292 36L282 52L296 58L282 62L276 76L268 62Z" fill="#fff"/>
+    <path d="M150 70Q200 60 246 52" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="4 6" opacity=".8"/></svg>`
+};
+
+const BODY = {
+  mercury(){
+    return `
+    <section class="sec panel">
+      <h2>See my work on LinkedIn</h2>
+      <p style="font-size:1.1rem">My work and certificates are kept up to date on my LinkedIn profile, so that's where this page sends you.</p>
+      <a class="btn big" href="${SITE.linkedin}" target="_blank" rel="noopener noreferrer">Open my LinkedIn profile</a>
+    </section>
+    <section class="sec grid2">
+      <div class="panel"><h3>Experience and projects</h3><p class="muted">What I've worked on and where.</p></div>
+      <div class="panel"><h3>Certificates</h3><p class="muted">Courses, licences and awards I've completed.</p></div>
+      <div class="panel"><h3>Skills and education</h3><p class="muted">What I know and where I learned it, including my B.Tech in Data Science at PSIT.</p></div>
+    </section>`;
+  },
+  venus(){
+    return `
+    <section class="sec panel"><h2>How I dress</h2><p>${SITE.styleIntro}</p></section>
+    <section class="sec"><h2>Trending in India right now</h2>
+      <div class="grid2">${SITE.trends.map(t=>`<div class="panel"><h3>${t.t}</h3><p class="muted" style="margin:.4rem 0 0">${t.d}</p></div>`).join("")}</div>
+    </section>
+    <section class="sec"><h2>My palette</h2>
+      <div class="swatches">${SITE.palette.map(([n,c])=>`<div class="sw"><span class="pl" style="--s:76px;background:${c}"></span><b>${n}</b>${c}</div>`).join("")}</div>
+    </section>
+    <section class="sec"><h2>How I wear it</h2>
+      <div class="grid2">${SITE.styleLists.map(([h,l])=>`<div class="panel"><h3>${h}</h3><ul class="list">${l.map(i=>`<li>${i}</li>`).join("")}</ul></div>`).join("")}</div>
+    </section>`;
+  },
+  earth(){
+    const m=moonInfo(), S=SITE.school, C=SITE.college;
+    return `
+    <section class="sec">
+      <ul class="creed">${SITE.creed.map(c=>`<li>${c}</li>`).join("")}</ul>
+    </section>
+    <section class="sec panel">${SITE.about.map(p=>`<p style="font-size:1.08rem">${p}</p>`).join("")}</section>
+    <section class="sec grid2">
+      <div class="panel"><h2>My school</h2><p>${S.name}, ${S.place}.</p>
+        <a class="btn ghost" href="${S.url}" target="_blank" rel="noopener noreferrer">Visit the NSPS website</a></div>
+      <div class="panel"><h2>My college</h2><p>${C.name}, where I'm pursuing my B.Tech in ${C.branch}. I graduate in ${C.year}.</p>
+        <a class="btn ghost" href="${C.url}" target="_blank" rel="noopener noreferrer">Visit the PSIT website</a></div>
+      <div class="panel"><h2>Quick facts</h2><dl class="facts">${SITE.facts.map(([k,v])=>`<dt>${k}</dt><dd>${v}</dd>`).join("")}</dl></div>
+    </section>
+    <section class="sec"><h2>My path so far</h2>
+      <ol class="tl">${SITE.path.map(x=>`<li><h3>${x.stage}</h3><div class="meta">${[x.place,x.years].filter(Boolean).join(", ")}</div><p>${x.note}</p>${x.link?`<p style="margin-top:.7rem"><a class="btn ghost" href="${x.link.url}" target="_blank" rel="noopener noreferrer">${x.link.label}</a></p>`:""}</li>`).join("")}</ol>
+    </section>
+    <section class="sec panel moonpanel">${moonSVG(88,m.p)}<div><h2 style="margin-bottom:.2rem">Tonight's moon</h2><p class="muted" style="margin:0">${m.name}, ${m.illum}% lit</p></div></section>`;
+  },
+  mars(){
+    return `
+    <section class="sec"><h2>Current missions</h2>
+      <div class="grid2">${SITE.missions.map(m=>`<div class="panel mission"><h3>${m.t}</h3><p class="muted" style="margin:.3rem 0 0">${m.d}</p>
+        <span class="st">${m.s}</span>
+        ${m.link?`<p style="margin:.9rem 0 0"><a class="btn ghost" href="${SITE.college.url}" target="_blank" rel="noopener noreferrer">Visit PSIT</a></p>`:""}</div>`).join("")}</div>
+    </section>
+    <section class="sec"><h2>Next 6 months</h2>
+      <div class="cloud">${SITE.next.map(n=>`<span class="chip" style="--w:0">${n}</span>`).join("")}</div>
+    </section>`;
+  },
+  jupiter(){
+    return `
+    <section class="sec"><h2>What recharges me</h2>
+      <div class="hgrid">${SITE.hobbies.map(h=>`<article class="hcard">${ART[h.id]}<div><h3>${h.t}</h3><p>${h.d}</p></div></article>`).join("")}</div>
+    </section>
+    <section class="sec panel"><h2>Songs for the singing part</h2><p>I keep a playlist of songs I sing along to and run to.</p>
+      <a class="btn ghost" href="#/neptune">Open my playlist</a></section>`;
+  },
+  saturn(){
+    const n=SITE.nda, c=SITE.coaching, b=SITE.ssb;
+    return `
+    <section class="sec panel"><p style="font-size:1.15rem">${n.intro}</p>
+      <dl class="facts" style="margin-top:1.2rem">${n.stats.map(([k,v])=>`<dt>${k}</dt><dd>${v}</dd>`).join("")}</dl></section>
+    <section class="sec"><h2>Where I prepared</h2>
+      <div class="grid2">
+        <div class="panel"><h3>${c.name}</h3><p class="muted" style="margin:.4rem 0 1rem">Written exam coaching. ${c.note}</p>
+          <a class="btn ghost" href="${c.url}" target="_blank" rel="noopener noreferrer">Visit Major Kalshi Classes</a></div>
+        <div class="panel"><h3>${b.name}</h3><p class="muted" style="margin:.4rem 0 1rem">SSB preparation at the ${b.full}. ${b.note}</p>
+          <a class="btn ghost" href="${b.url}" target="_blank" rel="noopener noreferrer">Visit AMAS Training</a></div>
+      </div>
+    </section>
+    <section class="sec"><h2>The journey</h2>
+      <ol class="tl num">${n.steps.map(s=>`<li><h3>${s.t}</h3><p>${s.d}</p></li>`).join("")}</ol>
+    </section>
+    <section class="sec grid2">
+      <div class="panel"><h2>What it taught me</h2><ul class="list">${n.lessons.map(l=>`<li>${l}</li>`).join("")}</ul></div>
+      <div class="panel"><h2>If you're an aspirant</h2><ul class="list">${n.tips.map(l=>`<li>${l}</li>`).join("")}</ul></div>
+    </section>
+    <section class="sec panel"><h2>How the NDA path works</h2>
+      <p>UPSC holds the written exam twice a year: Mathematics (300 marks) and the General Ability Test (600 marks). Candidates who clear it are called for a five-day SSB interview at a selection centre (900 marks). After a medical exam, a merit list combines the written and SSB scores.</p></section>`;
+  },
+  uranus(){
+    const P=SITE.players;
+    const lines=P.slice(1).map((p,i)=>`<line x1="${P[i].x}" y1="${P[i].y}" x2="${p.x}" y2="${p.y}"/>`).join("");
+    return `
+    <section class="sec">
+      <div class="const">
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">${lines}</svg>
+        ${P.map((p,i)=>`<button class="cstar" data-star="${i}" aria-pressed="${i===0}" style="left:${p.x}%;top:${p.y}%"><i></i>${p.n}</button>`).join("")}
+      </div>
+    </section>
+    <section class="sec panel detail" id="detail" aria-live="polite"></section>`;
+  },
+  neptune(){
+    return `
+    <section class="sec panel tune">
+      ${pl("neptune","70px",SAT_ORBIT)}
+      <div style="flex:1;min-width:220px"><h2 style="margin-bottom:.3rem">${SITE.playlistName}</h2><p class="muted" style="margin-bottom:1rem">${SITE.playlistNote}</p>
+      <a class="btn" href="${SITE.spotify}" target="_blank" rel="noopener noreferrer">Open the full playlist</a></div>
+    </section>
+    <section class="sec"><h2>On repeat</h2>
+      <ul class="tracks">${SITE.tracks.map((t,i)=>`<li><button class="trk" data-track="${i}" aria-pressed="${i===0}"><span><b>${t.t}</b><small>${t.a}</small></span><span class="mood">${t.m}</span></button></li>`).join("")}</ul>
+    </section>`;
+  }
+};
+
+function stopLink(kind,target){
+  const label = kind==="prev"?"Previous stop":"Next stop";
+  if(!target) return `<a class="${kind}" href="#/"><span class="sunmini" aria-hidden="true"></span><span><small>${label}</small><b>Back to the Sun</b></span></a>`;
+  return `<a class="${kind}" href="#/${target}">${pl(target,"34px")}<span><small>${label}</small><b>${PAGES[target].planet}: ${PAGES[target].title}</b></span></a>`;
+}
+function pageHTML(id){
+  const p=PAGES[id], i=ORDER.indexOf(id);
+  const extra = id==="earth"?MOON_ORBIT:id==="neptune"?SAT_ORBIT:"";
+  return `<article>
+    <div class="hero">
+      <span class="pl bigplanet p-${id}" style="--s:${p.hs}px" aria-hidden="true">${extra}</span>
+      <div class="hero-text"><h1>${p.title}</h1><p class="lede">${p.lede}</p></div>
+    </div>
+    ${BODY[id]()}
+    <nav class="stops" aria-label="Neighbouring planets">${stopLink("prev",ORDER[i-1])}${stopLink("next",ORDER[i+1])}</nav>
+  </article>`;
+}
+
+/* --------------------------- interactions --------------------------- */
+function showPlayer(i){
+  const p=SITE.players[i];
+  document.querySelectorAll(".cstar").forEach((b,j)=>b.setAttribute("aria-pressed",j===i));
+  $("#detail").innerHTML=`<h2>${p.n}</h2><div class="meta">${p.s}</div><p>${p.w}</p><p class="take"><b>What I take from him:</b> ${p.k}</p>`;
+}
+const view=$("#view");
+view.addEventListener("click",e=>{
+  const s=e.target.closest("[data-star]"); if(s) return showPlayer(+s.dataset.star);
+  const f=e.target.closest("[data-filter]");
+  if(f){
+    document.querySelectorAll("[data-filter]").forEach(b=>b.setAttribute("aria-pressed",b===f));
+    document.querySelectorAll(".cert").forEach(c=>c.hidden = f.dataset.filter!=="All" && c.dataset.tag!==f.dataset.filter);
+    return;
+  }
+  const t=e.target.closest("[data-track]");
+  if(t) document.querySelectorAll("[data-track]").forEach(b=>b.setAttribute("aria-pressed",b===t));
+});
+
+/* ------------------------------ router ------------------------------ */
+let first=true;
+function go(){
+  const raw=location.hash.replace(/^#\/?/,"");
+  const id=PAGES[raw]?raw:"home";
+  view.innerHTML = id==="home"?homeHTML():pageHTML(id);
+  document.title = id==="home" ? `${SITE.siteName}: ${SITE.name}` : `${PAGES[id].title}: ${SITE.siteName}`;
+  document.querySelectorAll(".dot").forEach(d=>{ if(d.dataset.id===id) d.setAttribute("aria-current","page"); else d.removeAttribute("aria-current"); });
+  if(id==="uranus") showPlayer(0);
+  if(!first){ window.scrollTo(0,0); view.focus({preventScroll:true}); warpBurst(); }
+  first=false;
+}
+
+/* --------------------------- static chrome -------------------------- */
+$("#brand").innerHTML=`<span class="sunmini" aria-hidden="true"></span>${SITE.siteName}`;
+$("#liTop").href=SITE.linkedin;
+$("#dots").innerHTML=ORDER.map(id=>`<a class="dot" href="#/${id}" data-id="${id}" aria-label="${PAGES[id].planet}: ${PAGES[id].title}" title="${PAGES[id].planet}: ${PAGES[id].title}">${pl(id,"16px")}</a>`).join("");
+const mi=moonInfo();
+$("#footMoon").innerHTML=`${moonSVG(30,mi.p)}<span>Tonight: ${mi.name}, ${mi.illum}% lit</span>`;
+$("#footRight").innerHTML=`knowaboutme, made from stardust and curiosity. <a href="${SITE.linkedin}" target="_blank" rel="noopener noreferrer">LinkedIn</a>`;
+
+/* ----------------------------- starfield ---------------------------- */
+const cv=$("#sky"),cx=cv.getContext("2d");
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+let W,H,stars=[],warp=0,warpT=0,mx=0,my=0,shoot=null,sat=null,nextShoot=4000,nextSat=12000;
+function resize(){
+  const D=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;
+  cv.width=W*D;cv.height=H*D;cx.setTransform(D,0,0,D,0,0);mx=W/2;my=H/2;
+  const n=Math.min(Math.round(W*H/5500),320);
+  stars=Array.from({length:n},()=>{const c=Math.random();return{x:Math.random()*W,y:Math.random()*H,z:Math.random()*.9+.1,tw:Math.random()*6.28,col:c<.14?"#ffd9a8":c>.86?"#a8c8ff":"#ffffff"}});
+  if(reduce) draw(0);
+}
+function draw(t){
+  cx.clearRect(0,0,W,H);
+  warp+=(warpT-warp)*.08;
+  const ox=mx-W/2,oy=my-H/2;
+  for(const s of stars){
+    let x=s.x-ox*s.z*.02,y=s.y-oy*s.z*.02+(reduce?0:t*.006*s.z);
+    x=((x%W)+W)%W;y=((y%H)+H)%H;
+    cx.globalAlpha=(.35+.65*(.5+.5*Math.sin(t*.0012*(.4+s.z)+s.tw)))*(.4+.6*s.z);
+    const r=.4+s.z*1.3;
+    if(warp>.03){
+      const k=warp*s.z*.16;cx.strokeStyle=s.col;cx.lineWidth=r;cx.beginPath();cx.moveTo(x,y);cx.lineTo(x+(x-W/2)*k,y+(y-H/2)*k);cx.stroke();
+    }else{cx.fillStyle=s.col;cx.beginPath();cx.arc(x,y,r,0,6.283);cx.fill();}
+  }
+  cx.globalAlpha=1;
+  if(reduce) return;
+  if(!shoot&&t>nextShoot) shoot={x:W*(.4+Math.random()*.6),y:Math.random()*H*.4,vx:-(6+Math.random()*3),vy:3+Math.random()*2,life:0};
+  if(shoot){
+    shoot.life++;shoot.x+=shoot.vx;shoot.y+=shoot.vy;
+    const tx=shoot.x-shoot.vx*9,ty=shoot.y-shoot.vy*9,g=cx.createLinearGradient(shoot.x,shoot.y,tx,ty);
+    g.addColorStop(0,"rgba(255,255,255,.95)");g.addColorStop(1,"rgba(255,255,255,0)");
+    cx.strokeStyle=g;cx.lineWidth=1.6;cx.beginPath();cx.moveTo(shoot.x,shoot.y);cx.lineTo(tx,ty);cx.stroke();
+    if(shoot.life>70){shoot=null;nextShoot=t+7000+Math.random()*8000;}
+  }
+  if(!sat&&t>nextSat) sat={x:-10,y:H*(.1+Math.random()*.3),vy:.05+Math.random()*.06};
+  if(sat){
+    sat.x+=.9;sat.y+=sat.vy;
+    cx.fillStyle="#dfe3f5";cx.fillRect(sat.x,sat.y,2.4,1.6);
+    if(Math.sin(t*.006)>.8){cx.fillStyle="rgba(255,120,110,.9)";cx.beginPath();cx.arc(sat.x+1.2,sat.y-1,1.6,0,6.283);cx.fill();}
+    if(sat.x>W+10){sat=null;nextSat=t+25000+Math.random()*20000;}
+  }
+}
+function loop(t){draw(t);requestAnimationFrame(loop);}
+function warpBurst(){ if(reduce) return; warpT=1; setTimeout(()=>warpT=0,600); }
+addEventListener("resize",resize);
+if(!reduce) addEventListener("mousemove",e=>{mx=e.clientX;my=e.clientY;});
+resize();
+if(!reduce) requestAnimationFrame(loop);
+
+addEventListener("hashchange",go);
+go();
+</script>
+</body>
+</html>
